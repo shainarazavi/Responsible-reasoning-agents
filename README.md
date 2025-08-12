@@ -1,10 +1,5 @@
 # Responsible Reasoning AI Agents (R²A²): A Survey
 
-> A unified view of **responsible reasoning** in LLM-based autonomous agents — linking chain-/tree-/graph-of-thought with **in-chain** fairness, privacy, auditability, and safety checks.
-
-<p align="center">
-  <img alt="R2A2 Taxonomy (placeholder)" src="figures/placeholder-taxonomy.png" width="70%">
-</p>
 
 **Authors:** Shaina Raza*, Ranjan Sapkota*, Manoj Karkee, Christos Emmanouilidis  
 **Affiliations:** Vector Institute; Cornell University; University of Groningen  
@@ -28,62 +23,8 @@ Responsible Reasoning AI Agents (R²A²) are LLM-powered agents that perform **m
 
 ---
 
-## Contents
 
-```
-Responsible-reasoning-agents/
-├── paper/
-│   └── Responsible_reasoning_survey.pdf
-├── figures/
-│   └── placeholder-taxonomy.png
-├── docs/
-│   ├── CONTRIBUTING.md
-│   ├── CODE_OF_CONDUCT.md
-│   └── evaluation-checklist.md
-├── benchmarks/
-│   └── README.md
-├── scripts/
-│   └── make_figures.py
-├── .gitignore
-├── CITATION.cff
-├── LICENSE
-└── README.md
-```
 
----
-
-## Quick start
-
-```bash
-git clone https://github.com/shainarazavi/Responsible-reasoning-agents.git
-cd Responsible-reasoning-agents
-# Open the paper
-xdg-open paper/Responsible_reasoning_survey.pdf  # macOS: open, Windows: start
-```
-
-Optional: create a virtual environment if you plan to use the helper scripts:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r docs/requirements.txt
-```
-
----
-
-## Reproduce figures/tables (stubs)
-
-```bash
-python scripts/make_figures.py
-```
-
-Outputs will be written to `figures/`.
-
----
-
-## Cite
-
-**CFF (preferred):** see `CITATION.cff`.
 
 **BibTeX:**
 
@@ -114,7 +55,6 @@ We thank contributors and readers who provide feedback and issue reports. PRs we
 
 ## 📚 References (Inline View)
 
-Full file: [`references.bib`](references.bib) · HTML view: [`docs/references.html`](docs/references.html)
 
 <details>
 <summary><strong>Show full references table</strong></summary>
