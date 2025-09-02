@@ -5,10 +5,6 @@
 **Affiliations:** Vector Institute; Cornell University; University of Groningen  
 **Equal contribution:** *Shaina Raza* and *Ranjan Sapkota*
 
-**Repository goals**
-- 📄 Archive the survey (PDF in `paper/`) and companion materials
-- 🧪 Provide evaluation checklists and templates for **responsible reasoning** experiments
-- 🧰 Offer minimal code stubs to reproduce taxonomy tables/figures and a citation-ready `CITATION.cff`
 
 > If you use this work, please cite us (see **Cite** below).
 
