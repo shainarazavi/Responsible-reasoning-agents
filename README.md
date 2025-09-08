@@ -1,4 +1,4 @@
-# Responsible Reasoning AI Agents (R²A²): A Survey
+# Responsible Agentic Reasoning and AI Agents: A Critical Survey
 
 
 **Authors:** Shaina Raza*, Ranjan Sapkota*, Manoj Karkee, Christos Emmanouilidis  
@@ -25,13 +25,17 @@ Responsible Reasoning AI Agents (R²A²) are LLM-powered agents that perform **m
 **BibTeX:**
 
 ```bibtex
-@misc{r2a2_survey_2025,
-  title        = {Responsible Reasoning AI Agents: A Survey},
-  author       = {Raza, Shaina and Sapkota, Ranjan and Karkee, Manoj and Emmanouilidis, Christos},
+@article{raza2025responsible,
+  author       = {Shaina Raza and Ranjan Sapkota and Manoj Karkee and others},
+  title        = {Responsible Agentic Reasoning and AI Agents: A Critical Survey},
+  journal      = {TechRxiv},
   year         = {2025},
-  note         = {Version: preprint},
-  howpublished = {https://github.com/shainarazavi/Responsible-reasoning-agents}
+  month        = sep,
+  day          = {08},
+  doi          = {10.36227/techrxiv.175735299.97215847/v1},
+  note         = {Preprint}
 }
+
 ```
 
 ---
