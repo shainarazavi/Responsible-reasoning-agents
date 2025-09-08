@@ -26,7 +26,7 @@ Responsible Reasoning AI Agents (R²A²) are LLM-powered agents that perform **m
 
 ```bibtex
 @article{raza2025responsible,
-  author       = {Shaina Raza and Ranjan Sapkota and Manoj Karkee and others},
+  author       = {Shaina Raza and Ranjan Sapkota and Manoj Karkee and Christos Emmanouilidis},
   title        = {Responsible Agentic Reasoning and AI Agents: A Critical Survey},
   journal      = {TechRxiv},
   year         = {2025},
