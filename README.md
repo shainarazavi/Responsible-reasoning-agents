@@ -14,12 +14,15 @@
 **What is R²A²?**  
 Responsible Reasoning AI Agents (R²A²) are LLM-powered agents that perform **multi-step reasoning** *with* built-in safeguards — **bias checks, privacy protection, audit logs, and robustness tests** — applied **at every reasoning step**, not just the final output.
 
-**Why now?** The 2024–2025 wave of reasoning models and agentic browsers demands **trace-level** evaluation (faithfulness, safety, privacy), continuous auditing, and human-in-the-loop oversight to reach production in high-stakes domains.
+**Why now?** The 2024–2026 wave of reasoning models and agentic browsers demands **trace-level** evaluation (faithfulness, safety, privacy), continuous auditing, and human-in-the-loop oversight to reach production in high-stakes domains.
 
 ---
 
+## Reference implementation (R2A2Agent)
+This repository includes a lightweight, educational scaffold that demonstrates an “R²A²-style” agent pipeline (planner/executor loop, toy tools, memory, policy checks, heuristic bias/privacy filtering, and audit logging).
 
-
+➡️ Code docs: `scripts/README.md`  
+▶️ Run the demo: `python3 scripts/demo.py`
 
 **BibTeX:**
 
