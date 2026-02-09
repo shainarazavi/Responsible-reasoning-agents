@@ -29,7 +29,7 @@ A small agent scaffold with these components:
 
 ### Run the demo
 ```bash
-python3 r2a2_architecture.py
+python3 scripts/examples/examples.py
 ```
 
 This runs a few example prompts and prints:
