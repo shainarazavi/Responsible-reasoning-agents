@@ -2,8 +2,7 @@
 
 This repository provides a **lightweight, educational reference** for an “R2A2-style” agent pipeline: a top-level orchestrator that combines a core LLM interface with a planner/executor loop, a scratchpad, tool calling (toy), memory, simple policy enforcement, bias/privacy checks (heuristic), and audit logging.
 
-> **Status:** Demo / skeleton code — not production-ready.
-
+> **Status:** Demo / skeleton code 
 ---
 
 ## What this is
