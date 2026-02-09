@@ -6,8 +6,7 @@
 **Equal contribution:** *Shaina Raza* and *Ranjan Sapkota*
 
 
-> If you use this work, please cite us (see **Cite** below).
-
+> If you use this work, please cite us 
 ---
 
 ## Overview
