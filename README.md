@@ -22,7 +22,7 @@ Responsible Reasoning AI Agents (R²A²) are LLM-powered agents that perform **m
 This repository includes a lightweight, educational scaffold that demonstrates an “R²A²-style” agent pipeline (planner/executor loop, toy tools, memory, policy checks, heuristic bias/privacy filtering, and audit logging).
 
 ➡️ Code docs: `scripts/README.md`  
-▶️ Run the demo: `python3 scripts/demo.py`
+▶️ Run the demo: `python3 scripts/examples/examples.py`
 
 **BibTeX:**
 
