@@ -1,19 +1,20 @@
-# R2A2 Agent — Revised with ReAct Loop
+
+# R2A2 Agent — ReAct + Tool-Using Scaffold
+
+| Component | Current |
+|----------|---------|
+| **Agent loop** | Multi-turn ReAct loop (up to 10 steps) |
+| **Tools** | Calculator, web search, web fetch, Python exec, file reader |
+| **Web search** | DuckDuckGo (free) / SerpAPI / Tavily |
+| **Code execution** | Sandboxed Python via subprocess |
+| **File handling** | PDF, Excel, CSV, DOCX, PPTX, images, audio |
+| **System prompt** | Full ReAct instructions with tool descriptions |
+| **Chat format** | Multi-turn message history with observations |
+| **Answer matching** | Normalised + numeric + containment matching |
+| **GAIA files** | Downloaded via `snapshot_download`, path passed to agent |
+| **Output** | JSONL + level, n_steps, tools_used, elapsed_s |
 
 
-
-| Component | v1 (3% accuracy) | v2 (revised) |
-|-----------|-------------------|--------------|
-| **Agent loop** | Single-pass LLM generation | Multi-turn ReAct loop (up to 10 steps) |
-| **Tools** | Calculator only | Calculator, web search, web fetch, Python exec, file reader |
-| **Web search** | None | DuckDuckGo (free) / SerpAPI / Tavily |
-| **Code execution** | None | Sandboxed Python via subprocess |
-| **File handling** | GAIA files ignored | PDF, Excel, CSV, DOCX, PPTX, images, audio |
-| **System prompt** | Minimal | Full ReAct instructions with tool descriptions |
-| **Chat format** | Single prompt | Multi-turn message history with observations |
-| **Answer matching** | Strict exact match | Normalised + numeric + containment matching |
-| **GAIA files** | Not downloaded | Downloaded via `snapshot_download`, path passed to agent |
-| **Output** | Basic JSONL | + level, n_steps, tools_used, elapsed_s |
 
 ## Architecture
 
