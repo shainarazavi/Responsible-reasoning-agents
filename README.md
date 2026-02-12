@@ -4,12 +4,11 @@
 ![Status](https://img.shields.io/badge/Status-Research%20Scaffold-blue)
 ![AI](https://img.shields.io/badge/Focus-Responsible%20AI-green)
 [![Preprint](https://img.shields.io/badge/Preprint-TechRxiv-blue)](https://www.techrxiv.org/doi/full/10.36227/techrxiv.175735299.97215847)
-[![DOI](https://img.shields.io/badge/DOI-10.36227%2Ftechrxiv.175735299.97215847-blue)](https://www.techrxiv.org/doi/full/10.36227/techrxiv.175735299.97215847)
 
 **Authors:** Shaina Raza*, Ranjan Sapkota*, Manoj Karkee, Christos Emmanouilidis  
 **Affiliations:** Vector Institute for Artificial Intelligence; Cornell University; University of Groningen  
 **Equal contribution:** Shaina Raza and Ranjan Sapkota
-------------------------------------------------------------------------
+---------------
 
 ## Overview
 
