@@ -91,16 +91,15 @@ python scripts/examples/examples.py
 If you use this work, please cite:
 
 ``` bibtex
-@article{raza2025responsible,
-  author  = {Raza, Shaina and Sapkota, Ranjan and Karkee, Manoj and Emmanouilidis, Christos},
-  title   = {Responsible Agentic Reasoning and AI Agents: A Critical Survey},
-  journal = {TechRxiv},
-  year    = {2025},
-  month   = sep,
-  day     = {8},
-  doi     = {10.36227/techrxiv.175735299.97215847/v1},
-  note    = {Preprint}
-}
+ @article{Raza_2025,
+title={Responsible Agentic Reasoning and AI Agents: A Critical Survey},
+url={http://dx.doi.org/10.36227/techrxiv.175735299.97215847/v2},
+DOI={10.36227/techrxiv.175735299.97215847/v2},
+publisher={Institute of Electrical and Electronics Engineers (IEEE)},
+author={Raza, Shaina and Sapkota, Ranjan and Karkee, Manoj and Emmanouilidis, Christos},
+year={2025},
+month=nov }
+
 ```
 
 ------------------------------------------------------------------------
