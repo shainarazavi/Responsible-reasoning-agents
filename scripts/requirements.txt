@@ -1,0 +1,23 @@
+# Core
+torch>=2.1
+transformers>=4.40
+datasets
+huggingface_hub
+
+# Web tools
+requests
+beautifulsoup4
+duckduckgo-search>=6.0
+
+# File readers
+PyMuPDF          # fitz — fast PDF reader
+openpyxl         # Excel
+python-docx      # Word
+python-pptx      # PowerPoint
+Pillow           # images
+
+# Optional — uncomment if available on your cluster
+# pytesseract    # OCR for images
+# openai-whisper # audio transcription (needs ffmpeg)
+# serpapi        # better search (needs SERPAPI_KEY)
+# tavily-python  # alternative search (needs TAVILY_API_KEY)

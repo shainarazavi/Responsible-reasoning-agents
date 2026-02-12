@@ -1,103 +1,106 @@
-# R2A2Agent (Reference Implementation)
+# R2A2 Agent — Revised with ReAct Loop
 
-This repository provides a **lightweight, educational reference** for an “R2A2-style” agent pipeline: a top-level orchestrator that combines a core LLM interface with a planner/executor loop, a scratchpad, tool calling (toy), memory, simple policy enforcement, bias/privacy checks (heuristic), and audit logging.
 
-> **Status:** Demo / skeleton code 
----
 
-## What this is
+| Component | v1 (3% accuracy) | v2 (revised) |
+|-----------|-------------------|--------------|
+| **Agent loop** | Single-pass LLM generation | Multi-turn ReAct loop (up to 10 steps) |
+| **Tools** | Calculator only | Calculator, web search, web fetch, Python exec, file reader |
+| **Web search** | None | DuckDuckGo (free) / SerpAPI / Tavily |
+| **Code execution** | None | Sandboxed Python via subprocess |
+| **File handling** | GAIA files ignored | PDF, Excel, CSV, DOCX, PPTX, images, audio |
+| **System prompt** | Minimal | Full ReAct instructions with tool descriptions |
+| **Chat format** | Single prompt | Multi-turn message history with observations |
+| **Answer matching** | Strict exact match | Normalised + numeric + containment matching |
+| **GAIA files** | Not downloaded | Downloaded via `snapshot_download`, path passed to agent |
+| **Output** | Basic JSONL | + level, n_steps, tools_used, elapsed_s |
 
-A small agent scaffold with these components:
+## Architecture
 
-- **CoreLLM**: abstract interface for any language model backend (`generate(prompt) -> str`)
-- **BaseLLM**: placeholder LLM used by default (echo / arithmetic demo)
-- **PlannerExecutor**: “plan-and-execute” loop that can detect *toy* tool calls from model output
-- **ToolAPIProxy**: tool registry and dispatcher (includes a `calculator` demo tool)
-- **MemoryStore**: in-memory key-value store for context retention
-- **ReasoningSampler**: placeholder for self-consistency sampling (currently returns the first sample)
-- **PolicyEngine**: simple output constraints (keyword-based)
-- **BiasPrivacyFilter**: heuristic bias/privacy flagging
-- **AuditLogger + MonitoringDashboard**: structured audit trail + console summary
-- **RunResult**: JSON-serializable result object
+```
+User Question + File
+       │
+       ▼
+┌─────────────────────┐
+│    R2A2Agent.run()   │
+│  ┌───────────────┐   │
+│  │  ReAct Loop   │   │   ← up to max_steps iterations
+│  │               │   │
+│  │  1. LLM chat  │──►│──► Thought: I need to search for X
+│  │  2. Parse     │   │    Action: web_search: X
+│  │  3. Tool call │──►│──► Observation: [search results]
+│  │  4. Append    │   │    (added to message history)
+│  │  5. Repeat    │   │
+│  │  ...          │   │
+│  │  FINAL ANSWER │──►│──► answer extracted
+│  └───────────────┘   │
+│                       │
+│  Policy + Bias check  │
+└─────────────────────┘
+       │
+       ▼
+   RunResult (JSONL)
+```
 
----
+## Quick Start
 
-## Quick start
-
-### Requirements
-- Python 3.9+ (recommended)
-
-### Run the demo
 ```bash
-python3 scripts/examples/examples.py
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Smoke test (no GPU needed)
+python examples/demo.py
+
+# 3. Smoke test with Qwen (needs GPU)
+python examples/demo.py --model qwen
+
+# 4. Full GAIA run (SLURM)
+sbatch run_qwen-agent.sh
 ```
 
-This runs a few example prompts and prints:
-- a console monitoring summary, and
-- a JSON blob per run (question, chain-of-thought scratchpad, answer, flags, audit events).
+## Tips for Higher Accuracy
 
----
+1. **Search API key**: DuckDuckGo is rate-limited; get a free SerpAPI or Tavily key
+   ```bash
+   export SERPAPI_KEY="your-key"
+   # or
+   export TAVILY_API_KEY="your-key"
+   ```
 
-## Where “inference” happens
+2. **Bigger model**: Swap Qwen-7B for Qwen-72B or an API model:
+   ```python
+   model = HFLLM("Qwen/Qwen2.5-72B-Instruct", max_new_tokens=1024)
+   ```
 
-Inference (the model call) happens in:
+3. **More steps**: Increase `MAX_STEPS` in examples.py (10 → 15 or 20)
 
-- `R2A2Agent.run(question)` → `PlannerExecutor.plan_and_execute(question)` → `ReasoningSampler.sample(model, prompt)` → `model(prompt)` → `CoreLLM.__call__` → `BaseLLM.generate(prompt)`
+4. **Audio transcription**: Install whisper for GAIA's .mp3 questions:
+   ```bash
+   pip install openai-whisper
+   ```
 
-By default, the agent uses **BaseLLM** unless you pass a real model into `R2A2Agent(model=...)`.
+5. **OCR**: Install tesseract for image-based questions:
+   ```bash
+   apt install tesseract-ocr && pip install pytesseract
+   ```
 
----
+## File Structure
 
-## Model backends (what can be plugged into this agent)
-
-This repository is **model-agnostic**. Any LLM can be used as long as you wrap it in a `CoreLLM` subclass that implements:
-
-```python
-def generate(self, prompt: str) -> str:
-    ...
 ```
-
-### Recommended model choices
-
-**Local (Hugging Face / Transformers)**
-- `Qwen/Qwen2.5-7B-Instruct` — strong instruction-following, great value
-- `meta-llama/Llama-3.1-8B-Instruct` — robust general-purpose baseline
-- `mistralai/Mistral-7B-Instruct-v0.3` — fast, lightweight
-- `google/gemma-2-9b-it` — strong quality for its size
-
-**Local serving**
-- **vLLM** (GPU) or **llama.cpp / GGUF** (CPU/GPU) can be used by implementing a `CoreLLM` adapter that calls their HTTP/CLI interface.
-
-**API-based**
-- Hosted models (e.g., OpenAI or other providers) can be integrated by implementing a `CoreLLM` adapter that calls the provider API and returns text.
-
----
-
-## Tool calling
-
-Tools are only executed if the model outputs lines in this exact format:
-
-```text
-call:<tool_name>: <argument>
+agents-revised/
+├── src/
+│   ├── __init__.py
+│   ├── llm.py          # Abstract LLM interface
+│   ├── hf_llm.py       # Qwen HF backend + ReAct system prompt
+│   ├── agent.py         # ReAct loop + R2A2Agent orchestrator
+│   ├── tools.py         # Calculator, web search, Python, file reader
+│   ├── policy.py        # Safety policy engine
+│   └── audit.py         # Audit logging + RunResult
+├── examples/
+│   ├── demo.py          # Quick smoke test
+│   └── examples.py      # Full GAIA evaluation runner
+├── outputs/             # JSONL results written here
+├── requirements.txt
+├── run_qwen-agent.sh    # SLURM script
+└── README.md
 ```
-
-Example:
-```text
-call:calculator: 2+3
-```
-
-> Note: The default `BaseLLM` is a placeholder and may not emit `call:` lines. For real tool use, select an instruction-tuned model and prompt it to follow the `call:<tool>: <arg>` convention.
-
----
-
-## Safety and limitations (read before using)
-
-This is an educational scaffold, not a secure production agent.
-
-- **Chain-of-thought exposure:** the scratchpad/audit trail can store and print intermediate reasoning. Many real deployments avoid returning internal reasoning traces.
-- **`eval()` in calculator:** the demo calculator uses `eval()` with restricted builtins. Treat it as unsafe for untrusted input; replace with a real math parser in production.
-- **Heuristic filters:** bias/privacy checks are keyword/regex-based and will produce false positives/negatives.
-- **Simple policy engine:** keyword blocking is not robust governance.
-- **Single-pass “planning”:** the executor parses one model output; it is not an iterative planner/reflection loop.
-
-

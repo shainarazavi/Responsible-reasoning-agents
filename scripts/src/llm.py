@@ -1,18 +1,15 @@
 from __future__ import annotations
 
 import abc
+import re
 from typing import Optional
 
 
 class CoreLLM(abc.ABC):
-    """Abstract base class for the core language model layer.
-
-    Subclasses should implement `generate(prompt)` and return a string response.
-    """
+    """Abstract base class for the core language model layer."""
 
     @abc.abstractmethod
     def generate(self, prompt: str) -> str:
-        """Generate a continuation of the given prompt."""
         raise NotImplementedError
 
     def __call__(self, prompt: str) -> str:
@@ -20,28 +17,23 @@ class CoreLLM(abc.ABC):
 
 
 class BaseLLM(CoreLLM):
-    """A placeholder LLM used by default (demo only).
+    """Placeholder LLM (demo only). Replace with HFLLM or an API backend."""
 
-    - If the prompt looks like a basic arithmetic expression, returns a computed result.
-    - Otherwise, returns a generic placeholder response.
-
-    Replace this with a real model adapter for practical use.
-    """
+    _EXPR_RE = re.compile(r"([\d][\d\s\+\-\*\/\.\(\)]+[\d\)])")
 
     def generate(self, prompt: str) -> str:
         expr = self._extract_expression(prompt)
         if expr:
             try:
                 result = eval(expr, {"__builtins__": {}}, {})
-                return f"I need to compute {expr}.\nThe result is {result}."
+                return f"Thought: I need to compute {expr}.\nFINAL ANSWER: {result}"
             except Exception:
-                return f"I need to compute {expr}.\nI encountered an error."
-        return "I will think about this step by step.\nHere is a placeholder answer."
+                return f"Thought: I need to compute {expr}.\nFINAL ANSWER: error"
+        return "Thought: I will think about this step by step.\nFINAL ANSWER: unknown"
 
-    @staticmethod
-    def _extract_expression(prompt: str) -> Optional[str]:
-        cleaned = prompt.strip().rstrip("?")
-        operators = ['+', '-', '*', '/']
-        if any(op in cleaned for op in operators) and any(ch.isdigit() for ch in cleaned):
-            return cleaned
+    @classmethod
+    def _extract_expression(cls, prompt: str) -> Optional[str]:
+        match = cls._EXPR_RE.search(prompt)
+        if match:
+            return match.group(1).strip()
         return None
