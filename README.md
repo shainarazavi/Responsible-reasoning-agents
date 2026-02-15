@@ -85,23 +85,7 @@ pip install -r requirements.txt
 python scripts/examples/examples.py
 ```
 
-------------------------------------------------------------------------
 
-## Citation
-
-If you use this work, please cite:
-
-``` bibtex
- @article{Raza_2025,
-title={Responsible Agentic Reasoning and AI Agents: A Critical Survey},
-url={http://dx.doi.org/10.36227/techrxiv.175735299.97215847/v2},
-DOI={10.36227/techrxiv.175735299.97215847/v2},
-publisher={Institute of Electrical and Electronics Engineers (IEEE)},
-author={Raza, Shaina and Sapkota, Ranjan and Karkee, Manoj and Emmanouilidis, Christos},
-year={2025},
-month=nov }
-
-```
 
 ------------------------------------------------------------------------
 
@@ -181,6 +165,23 @@ Please ensure contributions align with responsible AI best practices.
 - **gpt-oss-120b & gpt-oss-20b Model Card** — OpenAI (2025). https://openai.com/index/gpt-oss-model-card/  *(bib: `openai2025_gpt_oss_model_card`)*
 - **Gemini 2.5 Deep Think Model Card** — Google DeepMind (2025). https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-2-5-Deep-Think-Model-Card.pdf  *(bib: `google2025_gemini25_deepthink_modelcard`)*
 
+------------------------------------------------------------------------
+
+## Citation
+
+If you use this work, please cite:
+
+``` bibtex
+ @article{Raza_2025,
+title={Responsible Agentic Reasoning and AI Agents: A Critical Survey},
+url={http://dx.doi.org/10.36227/techrxiv.175735299.97215847/v2},
+DOI={10.36227/techrxiv.175735299.97215847/v2},
+publisher={Institute of Electrical and Electronics Engineers (IEEE)},
+author={Raza, Shaina and Sapkota, Ranjan and Karkee, Manoj and Emmanouilidis, Christos},
+year={2025},
+month=nov }
+
+```
 ------------------------------------------------------------------------
 
 ## Contact
