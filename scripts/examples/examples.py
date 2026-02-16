@@ -2,7 +2,6 @@
 """
 Run an R2A2 ReAct agent on the GAIA validation split.
 
-Changes from v1:
   - Downloads and passes GAIA attached files to the agent
   - Improved answer normalisation and matching
   - Richer JSONL output (n_steps, tools_used)
