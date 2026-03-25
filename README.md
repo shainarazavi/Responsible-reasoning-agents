@@ -1,8 +1,7 @@
 # Responsible Agentic Reasoning and AI Agents: A Critical Survey
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Preprint](https://img.shields.io/badge/Preprint-TechRxiv-blue)](https://www.techrxiv.org/doi/full/10.36227/techrxiv.175735299.97215847)
-
+[![Paper](https://img.shields.io/badge/Paper-PDF-red)](paper.pdf)
 Shaina Raza*, Ranjan Sapkota*, Manoj Karkee, Christos Emmanouilidis  
 Vector Institute · Cornell University · University of Groningen  
 
