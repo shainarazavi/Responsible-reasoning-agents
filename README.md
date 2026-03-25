@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](paper.pdf)
+
 Shaina Raza*, Ranjan Sapkota*, Manoj Karkee, Christos Emmanouilidis  
 Vector Institute · Cornell University · University of Groningen  
 
